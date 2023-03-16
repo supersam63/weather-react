@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Weather.css";
-import Forecast from "./Forecast";
 
 export default function Weather() {
   const [city, setCity] = useState("");
@@ -85,9 +84,7 @@ export default function Weather() {
               </span>
             </form>
           </div>
-          <div className="col-lg-5 forcast-grid">
-            <Forecast />
-          </div>
+          <div className="col-lg-5 forcast-grid"></div>
         </div>
       </div>
       <div className="open-source">
