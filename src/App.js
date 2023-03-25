@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <div className="hero">
         <div className="p-3 bg-light bg-opacity-10 border my-border-color border-2 rounded-end rounded-start">
-          <Weather defaultCity="Los Angeles" />
+          <Weather defaultCity="Salt Lake" />
         </div>
       </div>
     </div>
