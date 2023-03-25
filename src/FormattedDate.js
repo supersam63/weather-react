@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function FormattedDate(props) {
   let dayNumber = props.date.getDate();
   let hours = props.date.getHours();
