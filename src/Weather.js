@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Weather.css";
-import FormattedDate from "./FormattedDate";
+
+import WeatherInfo from "./WeatherInfo";
 
 export default function Weather(props) {
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState(props.defaultCity);
   const [weather, setWeather] = useState({ ready: false });
 
   function showWeather(response) {
@@ -20,8 +21,15 @@ export default function Weather(props) {
       icon: `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`,
     });
   }
+
+  function search() {
+    const apiKey = "4a240de8db217dtodb6166f343d5aa4a";
+    let url = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=imperial`;
+    axios.get(url).then(showWeather);
+  }
   function handleSubmit(event) {
     event.preventDefault();
+    search();
   }
   function updateCity(event) {
     setCity(event.target.value);
@@ -33,36 +41,12 @@ export default function Weather(props) {
           <div className="row">
             <div className="col-lg-6 current-temp">
               <span className="weather-border"></span>
+              <WeatherInfo data={weather} />
 
-              <h3>{weather.city}</h3>
-              <h1>
-                <span>{weather.temperature}</span>
-                <span className="units">
-                  <a href="/" className="active">
-                    °F
-                  </a>{" "}
-                  | <a href="/">°C</a>
-                </span>
-                <div>
-                  <ul className="current-weather-conditions">
-                    <li>
-                      Wind: <span>{weather.wind}</span>m/h,
-                    </li>
-                    <li>
-                      Humidity: <span>{weather.humidity}</span>%
-                    </li>
-                  </ul>
-                </div>
-                <div className="current-condition">{weather.description}</div>
-              </h1>
-              <img src={weather.icon} alt="" />
-              <h6>
-                <FormattedDate date={weather.date} />
-              </h6>
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <label
-                    for="formGroupExampleInput"
+                    htmlFor="formGroupExampleInput"
                     className="form-label"></label>
                   <input
                     type="search"
@@ -107,10 +91,7 @@ export default function Weather(props) {
       </div>
     );
   } else {
-    const apiKey = "4a240de8db217dtodb6166f343d5aa4a";
-    let url = `https://api.shecodes.io/weather/v1/current?query=${props.defaultCity}&key=${apiKey}&units=imperial`;
-    axios.get(url).then(showWeather);
-
+    search();
     return "Loading...";
   }
 }

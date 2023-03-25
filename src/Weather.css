@@ -91,10 +91,7 @@ button .go-button {
 a:link {
   text-decoration: none;
 }
-.units .active {
-  color: black;
-  cursor: default;
-}
+
 .units .active:hover {
   text-decoration: none;
   color: black;
