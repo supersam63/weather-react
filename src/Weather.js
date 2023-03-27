@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Weather.css";
-import GeoLocation from "./GeoLocation";
 import { ThreeDots } from "react-loader-spinner";
 
 import WeatherInfo from "./WeatherInfo";
@@ -36,6 +35,20 @@ export default function Weather(props) {
   function updateCity(event) {
     setCity(event.target.value);
   }
+  function currentLocationWeather(coordinates) {
+    let latitude = coordinates.coords.latitude;
+    let longitude = coordinates.coords.longitude;
+    const apiKey = "4a240de8db217dtodb6166f343d5aa4a";
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?lat=${latitude}&lon=${longitude}&key=${apiKey}&units=imperial`;
+    axios.get(apiUrl).then(showWeather);
+  }
+
+  function handleCurrentLocation(event) {
+    event.preventDefault();
+
+    navigator.geolocation.getCurrentPosition(currentLocationWeather);
+  }
+
   if (weather.ready) {
     return (
       <div className="Weather">
@@ -66,7 +79,12 @@ export default function Weather(props) {
                   />
                 </span>
                 <span className="current-location-button">
-                  <GeoLocation />
+                  <button
+                    type="button"
+                    className="btn btn-outline-success"
+                    onClick={handleCurrentLocation}>
+                    Current Location
+                  </button>
                 </span>
               </form>
             </div>
