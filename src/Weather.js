@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Weather.css";
+import GeoLocation from "./GeoLocation";
 import { ThreeDots } from "react-loader-spinner";
 
 import WeatherInfo from "./WeatherInfo";
@@ -65,9 +66,7 @@ export default function Weather(props) {
                   />
                 </span>
                 <span className="current-location-button">
-                  <button type="button" className="btn btn-outline-success">
-                    Current Location
-                  </button>
+                  <GeoLocation />
                 </span>
               </form>
             </div>
