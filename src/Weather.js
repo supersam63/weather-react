@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Weather.css";
+import WeatherForecast from "./WeatherForecast";
 import { ThreeDots } from "react-loader-spinner";
 
 import WeatherInfo from "./WeatherInfo";
@@ -10,7 +11,6 @@ export default function Weather(props) {
   const [weather, setWeather] = useState({ ready: false });
 
   function showWeather(response) {
-    console.log(response.data);
     setWeather({
       ready: true,
       temperature: Math.round(response.data.temperature.current),
@@ -88,7 +88,9 @@ export default function Weather(props) {
                 </span>
               </form>
             </div>
-            <div className="col-lg-5 forcast-grid"></div>
+            <div className="col-lg-5 forcast-grid">
+              <WeatherForecast city={weather.city} />
+            </div>
           </div>
         </div>
         <div className="open-source">
