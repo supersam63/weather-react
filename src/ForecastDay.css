@@ -3,9 +3,21 @@
   grid-template-columns: 1fr 1fr 75px 75px;
   place-items: center;
   font-size: 20px;
-  line-height: 30px;
+
   padding-left: 20px;
 }
 .forecast-low {
   opacity: 0.5;
+}
+.forecast-grid {
+  text-align: center;
+  padding: 0;
+}
+@media (max-width: 992px) {
+  .grid {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    padding: 0;
+    justify-content: center;
+  }
 }

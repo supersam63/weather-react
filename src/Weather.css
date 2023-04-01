@@ -6,8 +6,7 @@
   font-family: "Abyssinica SIL", serif;
 }
 
-.current-temp,
-.forcast-grid {
+.current-temp {
   text-align: center;
   padding: 0%;
 }
@@ -115,11 +114,5 @@ a:link {
   }
   .forecast-low {
     display: none;
-  }
-  .grid {
-    display: grid;
-    grid-template-columns: 100px 100px 100px;
-    padding: 0;
-    justify-content: center;
   }
 }
