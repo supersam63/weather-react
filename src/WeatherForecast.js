@@ -15,6 +15,12 @@ export default function WeatherForecast(props) {
     setForecast(response.data.daily);
     setLoaded(true);
   }
+  function load() {
+    let query = props.city;
+    let apiKey = "4a240de8db217dtodb6166f343d5aa4a";
+    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${query}&key=${apiKey}&units=imperial`;
+    axios.get(apiUrl).then(handleResponse);
+  }
 
   if (loaded) {
     console.log(forecast);
@@ -34,10 +40,7 @@ export default function WeatherForecast(props) {
       </div>
     );
   } else {
-    let query = props.city;
-    let apiKey = "4a240de8db217dtodb6166f343d5aa4a";
-    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${query}&key=${apiKey}&units=imperial`;
-    axios.get(apiUrl).then(handleResponse);
+    load();
     return null;
   }
 }
