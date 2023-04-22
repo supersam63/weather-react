@@ -103,7 +103,7 @@ export default function Weather(props) {
           , by{" "}
           <a
             href="https://samantha-portfolio-e9d0c1.netlify.app"
-            tartet="_blank"
+            target="_blank"
             rel="noreferrer">
             Samantha Vellinga
           </a>
